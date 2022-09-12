@@ -11,12 +11,14 @@ using ExitGames.Client.Photon;
 
 public class PlayerScript : MonoBehaviourPun
 {
+    [SerializeField]
+    Camera camera;
     PhotonView PV;
     // Start is called before the first frame update
 
 
     // 동적 오브젝트 이벤트 받기 코드
-    void OnEnable()
+    void Onnable()
     {
         PhotonNetwork.NetworkingClient.EventReceived += EventReceive;
     }
@@ -44,10 +46,15 @@ public class PlayerScript : MonoBehaviourPun
 
     void Start()
     {
+        camera = GetComponentInChildren<Camera>();
         PV = photonView;
 
         // 만약 이게 Is Mince 경우 RPC 를 하고 매개변수를 넘겨주는 것 이다.
         if (PV.IsMine) PV.RPC("TestRPC", RpcTarget.All, "A", "B");
+        if (PV.IsMine) 
+            camera.gameObject.SetActive(true);
+        else
+            camera.gameObject.SetActive(false);
 
     }
 

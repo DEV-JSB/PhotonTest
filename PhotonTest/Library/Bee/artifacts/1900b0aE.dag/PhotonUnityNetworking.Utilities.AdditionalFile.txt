@@ -1,1 +1,1 @@
-D:\Unity_class\PhotonTest
+D:\PhotonTest\PhotonTest

@@ -8,6 +8,7 @@ using Photon.Realtime;
 public class MechanicControl : MonoBehaviourPun , IPunObservable
 {
 
+
     NetworkManager NM;
     PhotonView PV;
 
@@ -35,7 +36,6 @@ public class MechanicControl : MonoBehaviourPun , IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(this.gameObject.transform.position);
-
             stream.SendNext(this.gameObject.transform.rotation);
         }
         else
