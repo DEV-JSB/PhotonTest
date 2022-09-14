@@ -22,6 +22,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks , IOnEventCallback
     {
         PhotonNetwork.LocalPlayer.NickName = nickNameInput.text;
         PhotonNetwork.ConnectUsingSettings();
+        
     }
 
     public void OnEvent(EventData photonEvent)
@@ -35,25 +36,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks , IOnEventCallback
             }
         }
     }
+    
     void Update()
     {
         PlayerScript Player = FindPlayer();
     }
     PlayerScript FindPlayer()
     {
-        foreach(GameObject Player in GameObject.FindGameObjectsWithTag("Player"))
+        foreach (GameObject Player in GameObject.FindGameObjectsWithTag("Player"))
         {
             if (Player.GetPhotonView().IsMine)
                 return Player.GetComponent<PlayerScript>();
         }
         return null;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Screen.SetResolution(540, 960, false);
-        
     }
 
     // 마스터 서버나 로비에 접속을 하면 참가를 할 수 있도록

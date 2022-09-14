@@ -31,12 +31,13 @@ public class MechanicControl : MonoBehaviourPun , IPunObservable
         animator = GetComponent<Animator>();
     }
 
+    // -> 이게 머하는걸까???
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(this.gameObject.transform.position);
-            stream.SendNext(this.gameObject.transform.rotation);
+            //stream.SendNext(this.gameObject.transform.position);
+            //stream.SendNext(this.gameObject.transform.rotation);
         }
         else
         {
