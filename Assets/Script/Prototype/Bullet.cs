@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 8.0f;
+    [SerializeField]
+    private float speed = 4.0f;
+    public float Speed => speed;
+
+    [SerializeField]
+    private GameObject owner;
+    public GameObject Owner => owner;
+
+
     private Rigidbody bulletRigidbody;
     private float lifeTime = 3.0f;
     // Start is called before the first frame update
@@ -18,7 +26,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         lifeTime -= Time.deltaTime;
-        if (0.0f < lifeTime)
+        if (0.0f >= lifeTime)
             Destroy(this.gameObject);
     }
 }
