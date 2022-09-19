@@ -11,7 +11,7 @@ public class MouseMoveRotation : MonoBehaviour
     void Update()
     {
         mousePos = Input.mousePosition;
-        mousePos.z = cam.farClipPlane;
+        //mousePos.z = cam.farClipPlane;
     }
     private void FixedUpdate()
     {
@@ -19,6 +19,4 @@ public class MouseMoveRotation : MonoBehaviour
         mousePos.y = this.transform.position.y;
         transform.LookAt(mousePos);
     }
-
-
 }
