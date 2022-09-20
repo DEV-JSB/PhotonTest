@@ -11,8 +11,6 @@ public class PlayerName : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        if (!photonView.IsMine)
-            return;
         nameField.text = photonView.Owner.NickName;
     }
 
