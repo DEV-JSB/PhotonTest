@@ -42,7 +42,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         if (startPlayerCount == PhotonNetwork.CountOfPlayers)
         {
-            photonView.RPC("LoadingInGame", RpcTarget.All);
+            GetComponent<PhotonView>().RPC("LoadingInGame", RpcTarget.All);
         }
         else
         {
