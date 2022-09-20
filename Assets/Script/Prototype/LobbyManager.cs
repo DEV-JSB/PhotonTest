@@ -34,12 +34,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnConnectedToMaster");
         
-        PhotonNetwork.JoinOrCreateRoom("Room"+ roomCount.ToString(), new RoomOptions { MaxPlayers = 4 },null);
+        PhotonNetwork.JoinOrCreateRoom("Room"+ roomCount.ToString(), new RoomOptions { MaxPlayers = 2 },null);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         Debug.Log("접속 실패");
+        ++roomCount;
+        PhotonNetwork.JoinOrCreateRoom("Room" + roomCount.ToString(), new RoomOptions { MaxPlayers = 2 }, null);
+      
     }
     // 마지막에 접속한 아이만 접속이 된다 어떻게 하면 좋을까
     // 마지막 말고 서버가 접속중이라면 계속해서 풀로 찼는지 검사를 하고 싶다.
@@ -49,17 +52,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom");
-        connectCount = PhotonNetwork.CurrentRoom.PlayerCount;
-
-        if (connectCount > startPlayerCount)
-        {
-            ++roomCount;
-            connectCount = 0;
-            PhotonNetwork.CreateRoom("Room" + roomCount.ToString(), new RoomOptions { MaxPlayers = 2 }, null);
-            connectText.GetComponent<ConnectCountText>().RefreshServerText(connectCount);
-
-        }
-        else if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
+        
+        if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
         {
             GetComponent<PhotonView>().RPC("LoadingInGame", RpcTarget.All);
         }
