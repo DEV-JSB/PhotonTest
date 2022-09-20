@@ -8,12 +8,19 @@ using TMPro;
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     [SerializeField]
-    int startPlayerCount = 8;
+    int startPlayerCount = 4;
     public int connectCount = 0;
     [SerializeField]
     TextMeshProUGUI nameText;
     [SerializeField]
     TextMeshProUGUI connectText;
+
+
+    int roomCount = 0;
+
+
+
+
 
     private void Awake()
     {
@@ -29,7 +36,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster");
-        PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions { MaxPlayers = 20 },null);
+        PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions { MaxPlayers = 4 },null);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
