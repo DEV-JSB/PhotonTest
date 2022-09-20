@@ -41,6 +41,10 @@ MonoBehaviour:
   - RespawnSpaceship
   - TestRPC
   - ShotProcessOnServer
+  - RefreshUI
+  - RefreshConnectCount
+  - RefreshServerText
+  - LoadingInGame
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

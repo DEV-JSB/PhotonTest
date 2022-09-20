@@ -8,7 +8,12 @@ using TMPro;
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     [SerializeField]
+    int startPlayerCount = 8;
+    public int connectCount = 0;
+    [SerializeField]
     TextMeshProUGUI nameText;
+    [SerializeField]
+    TextMeshProUGUI connectText;
 
     private void Awake()
     {
@@ -28,9 +33,29 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("접속 실패");
     }
+    // 마지막에 접속한 아이만 접속이 된다 어떻게 하면 좋을까
+    // 마지막 말고 서버가 접속중이라면 계속해서 풀로 찼는지 검사를 하고 싶다.
+    // 어떻게 하면 좋을까
+    // 업데이트문을 돌려야할까
+    // 굳이 그럴 필요가 있을
     public override void OnJoinedRoom()
     {
-            Debug.Log("레벨 로딩");
-            PhotonNetwork.LoadLevel("Map");
+        if (startPlayerCount == PhotonNetwork.CountOfPlayers)
+        {
+            photonView.RPC("LoadingInGame", RpcTarget.All);
+        }
+        else
+        {
+            Debug.Log(PhotonNetwork.CountOfPlayers);
+            connectCount = PhotonNetwork.CountOfPlayers;
+            connectText.GetComponent<ConnectCountText>().RefreshServerText(connectCount);
+        }
+    }
+
+    [PunRPC]
+    private void LoadingInGame()
+    {
+        PhotonNetwork.LoadLevel("Map");
+
     }
 }
