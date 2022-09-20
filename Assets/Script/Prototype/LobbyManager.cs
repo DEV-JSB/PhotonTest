@@ -17,9 +17,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
 
     int roomCount = 0;
-
-
-
+    string defaultRoomName = "Room";
 
 
     private void Awake()
@@ -29,14 +27,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void Connect()
     {
         Debug.Log("Connect");
-
         PhotonNetwork.LocalPlayer.NickName = nameText.text;
         PhotonNetwork.ConnectUsingSettings();
     }
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster");
-        PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions { MaxPlayers = 4 },null);
+        
+        PhotonNetwork.JoinOrCreateRoom("Room"+ roomCount.ToString(), new RoomOptions { MaxPlayers = 4 },null);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
@@ -51,9 +49,17 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom");
+        connectCount = PhotonNetwork.CurrentRoom.PlayerCount;
 
+        if (connectCount > startPlayerCount)
+        {
+            ++roomCount;
+            connectCount = 0;
+            PhotonNetwork.CreateRoom("Room" + roomCount.ToString(), new RoomOptions { MaxPlayers = 2 }, null);
+            connectText.GetComponent<ConnectCountText>().RefreshServerText(connectCount);
 
-        if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
+        }
+        else if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
         {
             GetComponent<PhotonView>().RPC("LoadingInGame", RpcTarget.All);
         }

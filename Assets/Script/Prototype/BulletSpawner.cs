@@ -35,6 +35,7 @@ public class BulletSpawner : MonoBehaviourPun
     {
         Fire();
     }
+
     void Fire()
     {
         //Vector3 bulletDirection = GetComponent<RotationPivotMouse>().LookVec;
