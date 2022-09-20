@@ -9,7 +9,7 @@ public class CameraMovePivotPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     private void Update()
     {
@@ -17,7 +17,6 @@ public class CameraMovePivotPlayer : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
         Vector3 playerPos = player.transform.position;
         playerPos.y = this.transform.position.y;
         this.transform.position = playerPos;
