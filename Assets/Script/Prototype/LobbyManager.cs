@@ -9,7 +9,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     TextMeshProUGUI nameText;
-  
+
+    private void Awake()
+    {
+        Screen.SetResolution(1920, 1080, false);
+    }
     public void Connect()
     {
         PhotonNetwork.LocalPlayer.NickName = nameText.text;
@@ -26,7 +30,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
-        Debug.Log("레벨 로딩");
-        PhotonNetwork.LoadLevel("Map");
+            Debug.Log("레벨 로딩");
+            PhotonNetwork.LoadLevel("Map");
     }
 }

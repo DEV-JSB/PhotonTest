@@ -9,8 +9,7 @@ public class Bullet : MonoBehaviour
     public float Speed => speed;
 
     [SerializeField]
-    private GameObject owner;
-    public GameObject Owner => owner;
+    public GameObject owner;
 
 
     private Rigidbody bulletRigidbody;

@@ -8,12 +8,13 @@ public class HealthScript : MonoBehaviour
     int hp;
     [SerializeField]
     Slider hpSlider;
-
+    [SerializeField]
+    GameObject body;
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Bullet"))
         {
-            if (other.gameObject.GetComponent<Bullet>().Owner != this.gameObject)
+            if (other.gameObject.GetComponent<Bullet>().owner != body)
             {
                 Debug.Log("¾Æ¾ß ");
                 hp -= 10;

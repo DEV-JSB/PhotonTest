@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class CubeMove : MonoBehaviour
+using Photon.Pun;
+using Photon.Realtime;
+public class CubeMove : MonoBehaviourPun
 {
     [SerializeField]
-    float moveSpeed = 100.0f;
-
+    private float moveSpeed = 100.0f;
+    
     private void FixedUpdate()
     {
-        if(Input.GetKey(KeyCode.W))
+        if (!photonView.IsMine)
+            return;
+        if (Input.GetKey(KeyCode.W))
         {
             this.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime,Space.World);
         }
