@@ -21,11 +21,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     public void Connect()
     {
+        Debug.Log("Connect");
+
         PhotonNetwork.LocalPlayer.NickName = nameText.text;
         PhotonNetwork.ConnectUsingSettings();
     }
     public override void OnConnectedToMaster()
     {
+        Debug.Log("OnConnectedToMaster");
         PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions { MaxPlayers = 20 },null);
     }
 
@@ -40,14 +43,16 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     // ±ª¿Ã ±◊∑≤ « ø‰∞° ¿÷¿ª
     public override void OnJoinedRoom()
     {
-        if (startPlayerCount == PhotonNetwork.CountOfPlayers)
+        Debug.Log("OnJoinedRoom");
+
+
+        if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
         {
             GetComponent<PhotonView>().RPC("LoadingInGame", RpcTarget.All);
         }
-        else
+        else if (PhotonNetwork.IsConnected)
         {
-            Debug.Log(PhotonNetwork.CountOfPlayers);
-            connectCount = PhotonNetwork.CountOfPlayers;
+            connectCount = PhotonNetwork.CurrentRoom.PlayerCount;
             connectText.GetComponent<ConnectCountText>().RefreshServerText(connectCount);
         }
     }

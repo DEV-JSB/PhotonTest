@@ -763,7 +763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02b977ffd7c08c4ead4ef40feb22e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPlayerCount: 3
+  startPlayerCount: 4
   connectCount: 0
   nameText: {fileID: 553206385}
   connectText: {fileID: 1508280259}
@@ -786,7 +786,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 2
+  sceneViewId: 4
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &1225491732

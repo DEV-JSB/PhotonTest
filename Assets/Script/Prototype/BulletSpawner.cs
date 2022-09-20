@@ -25,7 +25,7 @@ public class BulletSpawner : MonoBehaviourPun
 
         if (Input.GetKey(KeyCode.Space))
         {
-            photonView.RPC("ShotProcessOnServer", RpcTarget.All);
+            photonView.RPC("ShotProcessOnServer", RpcTarget.MasterClient);
         }
 
     }
