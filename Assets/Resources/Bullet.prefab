@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  owner: {fileID: 0}
+  owner: {fileID: 5715166088541279761, guid: faf9547de05aefa4f80cc4111a9cd9a3, type: 3}
 --- !u!54 &2797011602010934724
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -545,7 +545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   hpSlider: {fileID: 6158828426875423014}
-  body: {fileID: 496051026259585271}
+  body: {fileID: 5715166088541279761}
 --- !u!114 &3202095876268919095
 MonoBehaviour:
   m_ObjectHideFlags: 0

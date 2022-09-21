@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class HealthScript : MonoBehaviour
+using Photon.Pun;
+
+public class HealthScript : MonoBehaviourPun
 {
     [SerializeField]
     int hp;
@@ -12,11 +14,11 @@ public class HealthScript : MonoBehaviour
     GameObject body;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Bullet"))
+        // 충돌 연산은 게임의 승패와 매우 중요한 연산 임으로 오직 MasterClient 에서만 한다.
+        if(PhotonNetwork.IsMasterClient && other.gameObject.layer == LayerMask.NameToLayer("Bullet"))
         {
             if (other.gameObject.GetComponent<Bullet>().owner != body)
             {
-                Debug.Log("아야 ");
                 hp -= 10;
                 hpSlider.value = hp;
             }
