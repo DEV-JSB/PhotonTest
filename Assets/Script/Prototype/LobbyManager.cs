@@ -54,9 +54,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log("OnJoinedRoom");
         
         if (startPlayerCount == PhotonNetwork.CurrentRoom.PlayerCount)
-        {
             GetComponent<PhotonView>().RPC("LoadingInGame", RpcTarget.All);
-        }
         else if (PhotonNetwork.IsConnected)
         {
             connectCount = PhotonNetwork.CurrentRoom.PlayerCount;

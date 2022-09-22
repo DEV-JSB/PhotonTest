@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac896f2a9ac400640a2bd324f863362b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 5715166088541279761}
   bulletPrefab: {fileID: 6250882180428119115, guid: ecf14e528df6a1f4e88bf083c6cf6b9c, type: 3}
 --- !u!1 &2257623865280682052
 GameObject:
@@ -545,7 +546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   hpSlider: {fileID: 6158828426875423014}
-  body: {fileID: 5715166088541279761}
+  player: {fileID: 5715166088541279761}
 --- !u!114 &3202095876268919095
 MonoBehaviour:
   m_ObjectHideFlags: 0

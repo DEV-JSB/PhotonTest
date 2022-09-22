@@ -6,7 +6,7 @@ using UnityEngine;
 
 using ExitGames.Client.Photon;
 
-public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
+public class GameManager : MonoBehaviourPunCallbacks , IPunObservable
 {
     private static GameManager m_instance;
     public static GameManager instance

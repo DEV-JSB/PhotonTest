@@ -5,6 +5,7 @@ using System;
 using Photon.Pun;
 public class BulletSpawner : MonoBehaviourPun
 {
+    [SerializeField] private GameObject player;
     public GameObject bulletPrefab;
     
 
@@ -44,6 +45,6 @@ public class BulletSpawner : MonoBehaviourPun
         // rotation 정보값이 제대로 전달이 안된게 아닐까
         GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, this.transform.position, this.transform.rotation);
         //bullet.transform.LookAt(bulletDirection);
-        bullet.GetComponent<Bullet>().owner = this.gameObject;
+        bullet.GetComponent<Bullet>().owner = player;
     }
 }
